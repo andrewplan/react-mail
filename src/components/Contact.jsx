@@ -24,14 +24,14 @@ export default class Contact extends React.Component {
 		}
 
 		getContact( contactId ) {
-			let contact = findContactById( contactId );
+				let contact = findContactById( contactId );
 
-			this.setState( {
-				name: contact.name
-				, company: contact.company
-				, email: contact.email
-				, phone: contact.phone
-			} );
+				this.setState( {
+						name: contact.name
+						, company: contact.company
+						, email: contact.email
+						, phone: contact.phone
+				} );
 		}
 
 		getStyles() {

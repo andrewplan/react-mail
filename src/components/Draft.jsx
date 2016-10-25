@@ -1,9 +1,38 @@
 import React from "react";
+import { browserHistory } from 'react-router';
+
+import { addSentMessage } from './../services/sentService';
 
 export default class Draft extends React.Component {
+		constructor() {
+				super();
+
+				this.state = {
+						recipientEmail: ''
+						, ccEmail: ''
+						, bccEmail: ''
+						, subject: ''
+						, content: ''
+				};
+		}
+
+		handleChange( field, event ) {
+				this.setState( {
+						[ field ]: event.target.value
+				} );
+				{ /* console.log( this.state ); */ }
+		}
+
 		sendMessage( event ) {
 				event.preventDefault();
-				browserHistory.push( '/inbox' );
+				addSentMessage( {
+						recipientEmail: this.state.recipientEmail
+						, ccEmail: this.state.ccEmail || ''
+						, bccEmail: this.state.bccEmail || ''
+						, subject: this.state.subject || ''
+						, content: this.state.content || ''
+				} );
+				browserHistory.push( '/sent' );
 		}
 
 		render() {
@@ -14,37 +43,47 @@ export default class Draft extends React.Component {
 						<h1>New Message</h1>
 						<form style={ styles.form }>
 							<input
+								onChange={ this.handleChange.bind( this, 'recipientEmail' ) }
 								placeholder="To: person@email.com"
 								style={ styles.input }
 								type="text"
+								value={ this.state.recipientEmail }
 							/>
 
 							<input
+								onChange={ this.handleChange.bind( this, 'ccEmail' ) }
 								placeholder="cc: person@email.com"
 								style={ styles.input }
 								type="text"
+								value={ this.state.ccEmail }
 							/>
 
 							<input
+								onChange={ this.handleChange.bind( this, 'bccEmail' ) }
 								placeholder="bcc: person@email.com"
 								style={ styles.input }
 								type="text"
+								value={ this.state.bccEmail }
 							/>
 
 							<input
+								onChange={ this.handleChange.bind( this, 'subject' ) }
 								placeholder="Subject"
 								style={ styles.input }
 								type="text"
+								value={ this.state.subject }
 							/>
 
 							<textarea
+								onChange={ this.handleChange.bind( this, 'content' ) }
 								cols="50"
 								rows="17"
 								style={ styles.draft }
+								value={ this.state.content }
 							/>
 
 							<button
-									onClick={ this.sendMessage }
+									onClick={ this.sendMessage.bind( this ) }
 									style={ styles.sendButton }
 							>
 								Send

@@ -8,6 +8,8 @@ import Message from './components/Message';
 import Draft from './components/Draft';
 import Contacts from './components/Contacts';
 import Contact from './components/Contact';
+import Sent from './components/Sent';
+import SentMessage from './components/SentMessage';
 
 document.addEventListener( 'DOMContentLoaded', () => {
     const reactNode = document.getElementById( 'react-node' );
@@ -22,6 +24,9 @@ document.addEventListener( 'DOMContentLoaded', () => {
                     </Route>
                     <Route path="/inbox" component={ Inbox }>
                         <Route path="/inbox/:messageId" component={ Message }/>
+                    </Route>
+                    <Route path="/sent" component={ Sent }>
+                        <Route path="/sent/:sentMessageId" component={ SentMessage }/>
                     </Route>
                 </Route>
             </Router>
