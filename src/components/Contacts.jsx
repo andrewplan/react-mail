@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 import Contact from "./Contact";
 import ContactLink from "./ContactLink"
-import { getContacts } from './../services/contactsService';
+import { getContacts, setContacts } from './../services/contactsService';
 
 export default class Contacts extends React.Component {
 		constructor( props ) {
@@ -15,7 +15,13 @@ export default class Contacts extends React.Component {
 		}
 
 		componentWillMount() {
-				this.setState( { contacts: getContacts() } );
+				getContacts()
+						.then( response => {
+								console.log( response );
+								let contacts = response.body;
+								setContacts( contacts );
+								this.setState( { contacts: contacts } );
+						} );
 		}
 
 		render() {

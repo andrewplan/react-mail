@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 
-import { getMessages } from './../services/messageService';
+import { getMessages, setMessages } from './../services/messageService';
 import MessageLink from './MessageLink';
 
 export default class Inbox extends React.Component {
@@ -12,7 +12,12 @@ export default class Inbox extends React.Component {
 		}
 
 		componentWillMount() {
-				this.setState( { messages: getMessages() } )
+				getMessages()
+						.then( response => {
+								let messages = response.body;
+								setMessages( messages );
+								this.setState( { messages: messages } );
+						} );
 		}
 
 		render() {
