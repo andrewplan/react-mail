@@ -35937,10 +35937,7 @@
 	}
 	
 	function getMessages() {
-		if (messages.length === 0) {
-			return _superagent2.default.get(baseUrl);
-		}
-		return messages;
+		return _superagent2.default.get(baseUrl);
 	}
 	
 	function findMessageById(id) {
@@ -38113,7 +38110,6 @@
 							var _this2 = this;
 	
 							(0, _contactsService.getContacts)().then(function (response) {
-									console.log(response);
 									var contacts = response.body;
 									(0, _contactsService.setContacts)(contacts);
 									_this2.setState({ contacts: contacts });
@@ -38329,10 +38325,7 @@
 	var baseUrl = 'http://localhost:4000/api/contacts';
 	
 	function getContacts() {
-		if (contacts.length === 0) {
-			return _superagent2.default.get(baseUrl);
-		}
-		return contacts;
+		return _superagent2.default.get(baseUrl);
 	}
 	
 	function setContacts(userContacts) {

@@ -7,10 +7,7 @@ export function setMessages( inboxMessages ) {
 }
 
 export function getMessages() {
-		if ( messages.length === 0 ) {
-				return request.get( baseUrl );
-		}
-		return messages;
+			return request.get( baseUrl );
 }
 
 export function findMessageById( id ) {

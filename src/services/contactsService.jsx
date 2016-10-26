@@ -2,10 +2,7 @@ import request from 'superagent';
 const baseUrl = 'http://localhost:4000/api/contacts'
 
 export function getContacts() {
-		if ( contacts.length === 0 ) {
-				return request.get( baseUrl );
-		}
-		return contacts;
+			return request.get( baseUrl );
 }
 
 export function setContacts( userContacts ) {

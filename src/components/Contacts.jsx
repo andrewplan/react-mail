@@ -17,7 +17,6 @@ export default class Contacts extends React.Component {
 		componentWillMount() {
 				getContacts()
 						.then( response => {
-								console.log( response );
 								let contacts = response.body;
 								setContacts( contacts );
 								this.setState( { contacts: contacts } );
